@@ -15,8 +15,12 @@ import { StartTestCommandHandler } from './commands/start-test.command';
 import { WelcomeCommandHandler } from './commands/welcome.command';
 import { CommandHandler } from './interfaces/command-handler.interface';
 import { StartTestButtonHandler } from './interactions/buttons/start-test-button.handler';
+import { AllTopicCommandHandler } from './commands/all-topic.command';
+import { TopicService } from '../topic/topic.service';
+import { TopicModule } from '../topic/topic.module';
 
 const commandHandlers = [
+  AllTopicCommandHandler,
   AllPartsCommandHandler,
   AllTestsCommandHandler,
   ConfirmStartTestCommandHandler,
@@ -24,11 +28,17 @@ const commandHandlers = [
   NextQuestionCommandHandler,
   RestartTestCommandHandler,
   StartTestCommandHandler,
-  WelcomeCommandHandler
+  WelcomeCommandHandler,
+
 ];
 
 @Module({
-  imports: [ConfigModule, ToeicModule, UserModule],
+  imports: [
+    ConfigModule,
+    ToeicModule,
+    UserModule,
+    TopicModule
+  ],
   providers: [
     CommandRouter,
     MezonService,
@@ -39,6 +49,7 @@ const commandHandlers = [
       useFactory: (...handlers: CommandHandler[]) => new CommandFactory(handlers),
       inject: [...commandHandlers],
     },
+
   ],
   exports: [MezonService],
 })

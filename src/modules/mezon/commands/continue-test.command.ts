@@ -30,8 +30,8 @@ export class ContinueTestCommandHandler implements CommandHandler {
 
     const buttons = question.options.map(opt =>
       createButton(
-        `answer_${opt.option_label}`,
-        `${opt.option_label}. ${opt.option_text}`,
+        `answer_${opt.optionLabel}`,
+        `${opt.optionLabel}. ${opt.optionText}`,
         EButtonMessageStyle.PRIMARY
       )
     );
@@ -39,7 +39,7 @@ export class ContinueTestCommandHandler implements CommandHandler {
     const messagePayload = createEmbedWithButtons(
       `Start Test ${progress.test.id}, Part ${progress.part.id}`,
       question?.id,
-      question?.question_text,
+      question?.questionText,
       buttons
     );
 

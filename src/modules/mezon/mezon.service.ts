@@ -12,7 +12,9 @@ export class MezonService implements OnModuleInit {
   private readonly logger = new Logger(MezonService.name);
   private client: MezonClient;
 
-  constructor(private commandRouter: CommandRouter, private startHandler: StartTestButtonHandler) { }
+  constructor(
+    private commandRouter: CommandRouter, private startHandler: StartTestButtonHandler
+  ) { }
 
   async onModuleInit() {
     try {
